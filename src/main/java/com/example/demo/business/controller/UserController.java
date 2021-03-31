@@ -22,10 +22,8 @@ public class UserController {
     @GetMapping(value = "/list", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public ResponseEntity<List<UserDTO>> list(@Nullable @RequestBody HashMap<String, Object> input) throws Exception {
-        // TODO: return값을 ResponseDTO로 변경 필요
         List<UserDTO> result = userService.selectUserList(input);
-        ResponseEntity<List<UserDTO>> rtn = new ResponseEntity(result, HttpStatus.OK);
-        //ResponseDTO response = new ResponseDTO(HttpStatus.OK.getReasonPhrase(), result);
-        return rtn;
+        ResponseEntity<List<UserDTO>> response = new ResponseEntity(result, HttpStatus.OK);
+        return response;
     }
 }

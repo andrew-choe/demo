@@ -7,6 +7,10 @@
              , USER_PW
              , USER_NM
           FROM USER
+        <where>
+            <if test="userId != null">AND USER_ID = #{userId}</if>
+            <if test="userNm != null">AND USER_NM = #{userNm}</if>
+        </where>
     </select>
 
 </mapper>
