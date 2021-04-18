@@ -2,7 +2,7 @@
 
 <mapper namespace="business.dao.UserDAO">
 
-    <select id="selectUserList" parameterType="HashMap" resultType="com.example.demo.business.dto.UserDTO">
+    <select id="selectUserList" parameterType="com.example.demo.business.dto.UserDTO" resultType="com.example.demo.business.dto.UserDTO">
         SELECT USER_ID
              , USER_PW
              , USER_NM
@@ -12,5 +12,17 @@
             <if test="userNm != null">AND USER_NM = #{userNm}</if>
         </where>
     </select>
+    
+    <insert id="insertUser" parameterType="com.example.demo.business.dto.UserDTO">
+        INSERT INTO USER (
+            USER_ID
+          , USER_PW
+          , USER_NM
+        ) VALUES (
+            #{userId}
+          , #{userPw}
+          , #{userNm}
+        )
+    </insert>
 
 </mapper>
