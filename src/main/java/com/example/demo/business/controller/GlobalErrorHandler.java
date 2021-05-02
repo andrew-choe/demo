@@ -8,11 +8,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.io.IOException;
+
 @RestControllerAdvice
 public class GlobalErrorHandler {
 
     @ExceptionHandler(DuplicateKeyException.class)
     ResponseEntity duplicateKeyExceptionHandler(DuplicateKeyException e) {
+        ResponseDTO responseDTO = new ResponseDTO(HttpStatus.INTERNAL_SERVER_ERROR.toString(), Constants.RESULT_MSG_FAIL_DUP);
+        return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(IOException.class)
+    ResponseEntity ioExceptionHandler(IOException e) {
         ResponseDTO responseDTO = new ResponseDTO(HttpStatus.INTERNAL_SERVER_ERROR.toString(), Constants.RESULT_MSG_FAIL_DUP);
         return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
     }

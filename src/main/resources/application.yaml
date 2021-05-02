@@ -11,12 +11,28 @@ spring:
 # 서버 설정
 server:
   port: 8080
+  error:
+    whitelabel:
+      enabled: true
 
 #mybatis 설정
 mybatis:
   mapper-locations: mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+# csp 설정
+cloud:
+  aws:
+    credentials:
+      accessKey:
+      secretKey:
+    s3:
+      bucket:
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
 
 ---
 # DEV
