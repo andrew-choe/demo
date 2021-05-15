@@ -1,14 +1,12 @@
 package com.example.demo.business.service;
 
+import com.amazonaws.AmazonServiceException;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
-import com.amazonaws.services.s3.model.ListObjectsV2Result;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.S3ObjectSummary;
+import com.amazonaws.services.s3.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,10 +45,15 @@ public class S3Service {
         return result.getObjectSummaries();
     }
 
-    public String uploadObject(MultipartFile file) throws IOException {
+    public String putObject(MultipartFile file) throws IOException {
         String fileName = file.getOriginalFilename();
         this.s3Client.putObject(new PutObjectRequest(this.bucket, fileName, file.getInputStream(), null)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
         return this.s3Client.getUrl(this.bucket, fileName).toString();
+    }
+
+    public S3Object getObject(String objectName) throws AmazonServiceException, IOException {
+        S3Object s3o = s3Client.getObject(bucket, objectName);
+        return s3o;
     }
 }

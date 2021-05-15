@@ -10,6 +10,10 @@ spring:
 
 # 서버 설정
 server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
   port: 8080
   error:
     whitelabel:
