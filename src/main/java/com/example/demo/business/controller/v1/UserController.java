@@ -1,4 +1,4 @@
-package com.example.demo.business.controller;
+package com.example.demo.business.controller.v1;
 
 import com.example.demo.business.constants.Constants;
 import com.example.demo.business.dto.FileDTO;

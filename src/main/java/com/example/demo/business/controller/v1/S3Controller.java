@@ -1,4 +1,4 @@
-package com.example.demo.business.controller;
+package com.example.demo.business.controller.v1;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.model.S3Object;
