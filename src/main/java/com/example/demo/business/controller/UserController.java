@@ -1,6 +1,7 @@
 package com.example.demo.business.controller;
 
 import com.example.demo.business.constants.Constants;
+import com.example.demo.business.dto.FileDTO;
 import com.example.demo.business.dto.ResponseDTO;
 import com.example.demo.business.dto.UserDTO;
 import com.example.demo.business.service.UserService;
@@ -43,5 +44,16 @@ public class UserController {
         userService.insertUser(userDTO);
         ResponseDTO responseDTO = new ResponseDTO<>(HttpStatus.CREATED.toString(), Constants.RESULT_MSG_SUCCESS);
         return new ResponseEntity(responseDTO, HttpStatus.CREATED);
+    }
+
+    @ApiOperation(value = "사용자의 파일목록 조회", response = ResponseDTO.class, responseContainer = "LIST")
+    @GetMapping(value = "/file/list", produces = "application/json;charset=UTF-8")
+    public ResponseEntity<List<UserDTO>> fileList(
+            @ApiParam(name = "userId", type = "String", value = "사용자ID", required = false)
+            @Nullable @RequestParam(value="userId") String userId) throws Exception {
+        UserDTO input = new UserDTO(userId);
+        List<FileDTO> result = userService.selectUserFileList(input);
+        ResponseDTO<FileDTO> responseDTO = new ResponseDTO<>(HttpStatus.OK.toString(), Constants.RESULT_MSG_SUCCESS_SEARCH, result);
+        return new ResponseEntity(responseDTO, HttpStatus.OK);
     }
 }

@@ -25,4 +25,17 @@
         )
     </insert>
 
+    <select id="selectUserFileList" parameterType="com.example.demo.business.dto.UserDTO" resultType="com.example.demo.business.dto.FileDTO">
+        SELECT F.FILE_NO
+             , F.FILE_NAME
+             , F.UPLOAD_DT
+          FROM USER U
+    INNER JOIN FILE F
+            ON F.USER_ID = U.USER_ID
+           AND F.VALID_YN = 'Y'
+        <where>
+            <if test="userId != null">AND U.USER_ID = #{userId}</if>
+        </where>
+    </select>
+
 </mapper>

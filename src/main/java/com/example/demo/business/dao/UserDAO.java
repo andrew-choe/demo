@@ -1,5 +1,6 @@
 package com.example.demo.business.dao;
 
+import com.example.demo.business.dto.FileDTO;
 import com.example.demo.business.dto.UserDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -21,5 +22,9 @@ public class UserDAO {
 
     public int insertUser(UserDTO input) throws Exception {
         return sqlSession.insert(queryPath.concat("insertUser"), input);
+    }
+
+    public List<FileDTO> selectUserFileList(UserDTO input) throws Exception {
+        return sqlSession.selectList(queryPath.concat("selectUserFileList"), input);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.demo.business.service;
 
 import com.example.demo.business.dao.UserDAO;
+import com.example.demo.business.dto.FileDTO;
 import com.example.demo.business.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,9 @@ public class UserService {
 
     public int insertUser(UserDTO input) throws Exception {
         return userDAO.insertUser(input);
+    }
+
+    public List<FileDTO> selectUserFileList(UserDTO input) throws Exception {
+        return userDAO.selectUserFileList(input);
     }
 }
