@@ -1,4 +1,4 @@
-# DB 설정
+#db
 spring:
   profiles:
     active: local
@@ -7,25 +7,30 @@ spring:
     password: root
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/DEMO?characterEncoding=UTF-8&serverTimezone=asia/seoul&useSSL=false
+  thymeleaf:
+    prefix: classpath:templates/
+    check-template-location: true
+    suffix: .html
+    cache: false
 
-# 서버 설정
+#server
 server:
   servlet:
     encoding:
       charset: UTF-8
       force: true
-  port: 8080
+  port: 8090
   error:
     whitelabel:
       enabled: true
 
-#mybatis 설정
+#mybatis
 mybatis:
   mapper-locations: mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
 
-# csp 설정
+#csp
 cloud:
   aws:
     credentials:
@@ -38,14 +43,18 @@ cloud:
     stack:
       auto: false
 
----
-# DEV
 
 ---
-# SANDBOX
+#dev
+
 
 ---
-# CBT
+#sandbox
+
 
 ---
-# PROD
+#cbt
+
+
+---
+#prod
